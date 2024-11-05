@@ -1,4 +1,5 @@
 import React from 'react'
+import Form from '../components/form';
 import { useNavigate } from 'react-router-dom';
 
 export const AgendarRecUnicoPage = () => {
@@ -12,8 +13,10 @@ export const AgendarRecUnicoPage = () => {
   return (
     <>
       <h1>Recordatorio Único</h1>
-
-
+      <div>
+      <h1>Recordatorio</h1>
+      <Form />
+      </div>
       <button onClick={handleNavigate1}>
       Agregar Recordatorio (Enviar Formulario)
       </button>
