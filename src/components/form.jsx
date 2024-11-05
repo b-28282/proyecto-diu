@@ -64,7 +64,7 @@ const SubmitButton = styled.button`
   }
 `;
 
-const Form = () => {
+const Form = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
     date: '',
     time: '',
@@ -84,7 +84,9 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Datos del formulario:", formData);
-    // Aquí puedes enviar los datos a una API o manejarlos como necesites
+    if (onSubmit) {
+      onSubmit(); // Llama a la función pasada por props (handleNavigate1 en este caso)
+    }
   };
 
   return (

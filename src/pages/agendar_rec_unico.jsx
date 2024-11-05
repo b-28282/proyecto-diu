@@ -12,16 +12,12 @@ export const AgendarRecUnicoPage = () => {
     };
   return (
     <>
-      <h1>Recordatorio Único</h1>
       <div>
-      <h1>Recordatorio</h1>
-      <Form />
+        <h1>Recordatorio Único</h1>    
+        <Form onSubmit={handleNavigate1} />
       </div>
-      <button onClick={handleNavigate1}>
-      Agregar Recordatorio (Enviar Formulario)
-      </button>
       <button onClick={handleNavigate}>
-      Atrás
+        Atrás
       </button>
     </>
   )
