@@ -1,9 +1,12 @@
 import React from 'react'
+import Calendar from 'react-calendar'
 
 export const CitasPage = () => {
   return (
     <>
-      <p>Citas</p>
+      <h1>Citas</h1>
+      <Calendar />
+      <h3>Recordatorios Únicos</h3>
     </>
   )
 }
