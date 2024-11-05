@@ -1,0 +1,19 @@
+.checklist {
+    display: flex;
+    gap: 1rem;
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .checklist li {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checklist-item {
+    display: flex;
+    flex-direction: column; /* Coloca el texto debajo del checkbox */
+    align-items: center; /* Centra el texto y el checkbox */
+    gap: 0.5rem; /* Espacio entre el checkbox y el texto */
+  }
+  
