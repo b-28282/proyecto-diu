@@ -6,7 +6,7 @@ import Form1 from '../components/form1';
 export const AgendarRecRecurrentePage = () => {
     const navigate = useNavigate();
     const handleNavigate = () => {
-    navigate('/agendar_rec'); // Cambia a la ruta que deseas
+    navigate('/recordatorios'); // Cambia a la ruta que deseas
     };
     const handleNavigate1 = () => {
     navigate('/recordatorios'); // Cambia a la ruta que deseas
@@ -16,7 +16,7 @@ export const AgendarRecRecurrentePage = () => {
       <h1>Recordatorio Semanal</h1>
 
       <Form1 onSubmit={handleNavigate1} />
-      <button onClick={handleNavigate}>
+      <button className='button' onClick={handleNavigate}>
       Atrás
       </button>
     </>

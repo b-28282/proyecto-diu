@@ -1,5 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import IconoCalendario from '../assets/calendario.png'
+import IconoRecordatorio from '../assets/recordatorio.png'
+import IconoAgregar from '../assets/agregar.png'
 
 export const NavBar = () => {
   const navLinkClass = ({ isActive }) => {
@@ -13,25 +16,19 @@ export const NavBar = () => {
         className={navLinkClass}
         to='/'
       >
-        Inicio
-      </NavLink>
-      <NavLink
-        className={navLinkClass}
-        to='/recordatorios'
-      >
-        Recordatorios
+        <img src={IconoRecordatorio} alt="Recordatorio" width="30" height="30"/>
       </NavLink>
       <NavLink
         className={navLinkClass}
         to='/citas'
       >
-        Citas
+        <img src={IconoCalendario} alt="Calendario" width="30" height="30"/>
       </NavLink>
       <NavLink
         className={navLinkClass}
-        to='/lightbulb'
+        to='/recordatorios'
       >
-        (eliminar despues)
+        <img src={IconoAgregar} alt="Agregar" width="30" height="30"/>
       </NavLink>
     </nav>
   )

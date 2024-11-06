@@ -10,13 +10,9 @@ export const HomePage = () => {
   return (
     <>
       <div>
-        <h1>Ejemplo de Tarjeta</h1>
+        <h1>Recordatorios de hoy</h1>
         <Card />
       </div>
-      <h1>Recordatorios</h1>
-      <button onClick={handleNavigate}>
-        Agregar Recordatorio
-      </button>
     </>
   )
 }

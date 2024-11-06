@@ -50,10 +50,10 @@ const Card = () => {
 
   return (
     <CardContainer>
-      <Symbol>🌟</Symbol>
+      <Symbol>💊</Symbol>
       <TextContainer>
-        <TextLine>Línea 1 de texto</TextLine>
-        <TextLine>Línea 2 de texto</TextLine>
+        <TextLine>Lunes</TextLine>
+        <TextLine>Tomar medicina - 14:00</TextLine>
         <StyledCheckbox checked={isChecked} onChange={handleCheckboxChange} />
       </TextContainer>
     </CardContainer>

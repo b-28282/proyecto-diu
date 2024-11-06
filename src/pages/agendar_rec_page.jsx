@@ -12,11 +12,11 @@ export const AgendarRecPage = () => {
     return (
       <>
         <h1>Agendar Recordatorios</h1>
-        <button onClick={handleNavigate}>
+        <button className='button' onClick={handleNavigate}>
           Recordatorio Recurrente
         </button>
-        <button onClick={handleNavigate1}>
-          Recordatorio Único
+        <button className='button' onClick={handleNavigate1}>
+          Recordatorio Único o Cita
         </button>
       </>
     )

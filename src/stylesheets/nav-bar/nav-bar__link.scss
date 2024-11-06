@@ -3,9 +3,15 @@
   margin-right: 15px;
   padding: 8px;
   color: rgb(6, 61, 148);
+  img {
+    transition: filter 0.3s ease;
+  }
 
   &--active {
     background: rgb(43, 150, 87);
     color: white;
+    img {
+      filter: invert(1);
+    }
   }
 }
