@@ -64,7 +64,7 @@ const SubmitButton = styled.button`
   }
 `;
 
-const Form = ({ onSubmit }) => {
+const FormUnico = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
     date: '',
     time: '',
@@ -128,4 +128,4 @@ const Form = ({ onSubmit }) => {
   );
 };
 
-export default Form;
+export default FormUnico;

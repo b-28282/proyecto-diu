@@ -5,9 +5,7 @@ import HomePage from '../pages/home_page'
 
 import NavBar from '../components/nav_bar'
 import CitasPage from '../pages/citas_page'
-import AgendarRecPage from '../pages/agendar_rec_page'
-import AgendarRecRecurrentePage from '../pages/agendar_rec_recurrente'
-import AgendarRecUnicoPage from '../pages/agendar_rec_unico'
+import AgendarRecForm from '../pages/agendar_rec_form'
 
 const Layout = () => {
   return (
@@ -18,10 +16,8 @@ const Layout = () => {
         <div className='layout__page'>
           <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/recordatorios' element={<AgendarRecPage />} />
             <Route path='/citas' element={<CitasPage />} />
-            <Route path='/agendar_rec_recurrente' element={<AgendarRecRecurrentePage/>}/>
-            <Route path='/agendar_rec_unico' element={<AgendarRecUnicoPage/>}/>
+            <Route path='/recordatorios' element={<AgendarRecForm />} />
           </Routes>
         </div>
       </div>

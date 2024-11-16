@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from '../components/form';
+import Form from '../components/form_unico';
 import { useNavigate } from 'react-router-dom';
 
 export const AgendarRecUnicoPage = () => {

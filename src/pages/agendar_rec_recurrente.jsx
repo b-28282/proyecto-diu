@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import Form1 from '../components/form1';
+import Form1 from '../components/form_recurrente';
 
 
 export const AgendarRecRecurrentePage = () => {
