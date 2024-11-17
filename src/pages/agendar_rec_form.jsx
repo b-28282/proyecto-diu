@@ -22,7 +22,7 @@ const AgendarRecForm = () => {
   return (
     <>
       <h1>Agendar Recordatorio</h1>
-      <div>
+      <div className="radio-group">
         <label>
           <input
             type="radio"
