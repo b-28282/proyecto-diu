@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export const AgendarRecUnicoPage = () => {
     const navigate = useNavigate();
     const handleNavigate = () => {
-    navigate('/recordatorios'); // Cambia a la ruta que deseas
+    navigate('/'); // Cambia a la ruta que deseas
     };
     const handleNavigate1 = () => {
     navigate('/citas'); // Cambia a la ruta que deseas
