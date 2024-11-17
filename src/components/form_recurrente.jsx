@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Checklist from './checklist';
 
-// Contenedor principal del formulario
-
-
 const FormContainer = styled.div`
   padding: 1rem;
   max-width: 400px;
@@ -14,7 +11,6 @@ const FormContainer = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
-// Etiquetas de texto
 const Label = styled.label`
   font-size: 1rem;
   margin-bottom: 0.5rem;
@@ -22,7 +18,6 @@ const Label = styled.label`
   font-weight: bold;
 `;
 
-// Contenedor de la línea de fecha y hora
 const TimeRow = styled.div`
   display: flex;
   justify-content: space-between;
@@ -30,7 +25,6 @@ const TimeRow = styled.div`
   margin-bottom: 1rem;
 `;
 
-// Input para fecha y hora
 const Input = styled.input`
   flex: 1;
   padding: 0.5rem;
@@ -39,7 +33,6 @@ const Input = styled.input`
   border-radius: 4px;
 `;
 
-// Campo de texto grande para la razón del recordatorio
 const TextArea = styled.textarea`
   width: 100%;
   padding: 0.5rem;
@@ -50,7 +43,6 @@ const TextArea = styled.textarea`
   min-height: 80px;
 `;
 
-// Botón de enviar
 const SubmitButton = styled.button`
   width: 100%;
   padding: 0.75rem;
@@ -67,61 +59,97 @@ const SubmitButton = styled.button`
   }
 `;
 
+const Select = styled.select`
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+`;
+
 const FormRecurrente = ({ onSubmit }) => {
   const [formRecurrenteData, setFormRecurrenteData] = useState({
-
-    time: '',
-    reason: ''
+    hora: '',
+    nombre: '',
+    icono: '💊',
+    dias: []
   });
 
-  // Maneja los cambios en los inputs
-  const handleChange = (a) => {
-    const { name, value } = a.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormRecurrenteData({
       ...formRecurrenteData,
       [name]: value
     });
   };
 
-  // Envía el formulario
-  const handleSubmit = (a) => {
-    a.preventDefault();
+  const handleDaysChange = (updatedItems) => {
+    const selectedDays = updatedItems.filter(item => item.completed).map(item => item.text);
+    setFormRecurrenteData({
+      ...formRecurrenteData,
+      dias: selectedDays
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log("Datos del formulario:", formRecurrenteData);
+
+    // Retrieve existing recordatorios from local storage
+    const existingRecordatorios = JSON.parse(localStorage.getItem('recordatorios')) || [];
+
+    // Add the new recordatorio to the array
+    const updatedRecordatorios = [...existingRecordatorios, formRecurrenteData];
+
+    // Save the updated array back to local storage
+    localStorage.setItem('recordatorios', JSON.stringify(updatedRecordatorios));
+
     if (onSubmit) {
-      onSubmit(); // Llama a la función pasada por props (handleNavigate1 en este caso)
+      onSubmit(formRecurrenteData);
     }
   };
 
   return (
-    
     <FormContainer>
       <form onSubmit={handleSubmit}>
-        {/* Línea de Fecha y Hora */}
         <Label>Hora a Avisar</Label>
         <TimeRow>
-
           <Input 
             type="time" 
-            name="time" 
-            value={formRecurrenteData.time} 
+            name="hora" 
+            value={formRecurrenteData.hora} 
             onChange={handleChange} 
             required 
           />
         </TimeRow>
         <Label>Días del Recordatorio</Label>
-        <Checklist />
+        <Checklist onDaysChange={handleDaysChange} />
 
-        {/* Campo de texto para la razón del recordatorio */}
         <Label>Razón del Recordatorio</Label>
         <TextArea 
-          name="reason" 
-          value={formRecurrenteData.reason} 
+          name="nombre" 
+          value={formRecurrenteData.nombre} 
           onChange={handleChange} 
           placeholder="Escribe la razón del recordatorio aquí..." 
           required 
         />
 
-        {/* Botón de enviar */}
+        <Label>Selecciona un Icono</Label>
+        <Select 
+          name="icono" 
+          value={formRecurrenteData.icono} 
+          onChange={handleChange}
+        >
+          <option value="💊">💊</option>
+          <option value="🩺">🩺</option>
+          <option value="💉">💉</option>
+          <option value="🩹">🩹</option>
+          <option value="🧪">🧪</option>
+          <option value="🩸">🩸</option>
+          <option value="🧴">🧴</option>
+        </Select>
+
         <SubmitButton type="submit">Guardar Recordatorio</SubmitButton>
       </form>
     </FormContainer>

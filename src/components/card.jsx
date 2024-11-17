@@ -40,10 +40,10 @@ const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
   cursor: pointer;
 `;
 
-const Card = () => {
+const Card = ({ dias, nombre, hora, icono }) => {
   const [isChecked, setIsChecked] = useState(() => {
     // Recupera el estado inicial desde sessionStorage
-    const storedState = sessionStorage.getItem('checkboxState');
+    const storedState = sessionStorage.getItem('checkboxState-'+nombre);
     return storedState ? JSON.parse(storedState) : false;
   });
 
@@ -51,15 +51,15 @@ const Card = () => {
     const newState = !isChecked;
     setIsChecked(newState);
     // Guarda el nuevo estado en sessionStorage
-    sessionStorage.setItem('checkboxState', JSON.stringify(newState));
+    sessionStorage.setItem('checkboxState-'+nombre, JSON.stringify(newState));
   };
 
   return (
     <CardContainer>
-      <Symbol>💊</Symbol>
+      <Symbol>{icono}</Symbol>
       <TextContainer>
-        <TextLine>Lunes</TextLine>
-        <TextLine>Tomar medicina - 14:00</TextLine>
+        <TextLine>{dias.join(", ")}</TextLine>
+        <TextLine>{nombre} - {hora}</TextLine>
         <StyledCheckbox checked={isChecked} onChange={handleCheckboxChange} />
       </TextContainer>
     </CardContainer>

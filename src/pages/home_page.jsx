@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/card';
 import IconoAgregar from '../assets/agregar.png';
@@ -31,6 +31,13 @@ const AddButton = styled.button`
 
 export const HomePage = () => {
   const navigate = useNavigate();
+  const [recordatorios, setRecordatorios] = useState([]);
+
+  useEffect(() => {
+    // Retrieve recordatorios from local storage
+    const savedRecordatorios = JSON.parse(localStorage.getItem('recordatorios')) || [];
+    setRecordatorios(savedRecordatorios);
+  }, []);
 
   const handleAddClick = () => {
     navigate('/recordatorios'); // Cambia a la ruta deseada
@@ -39,14 +46,23 @@ export const HomePage = () => {
   return (
     <>
       <div>
-        <h1>Recordatorios de hoy</h1>
-        <Card />
+        <h1>Recordatorios</h1>
         <AddButton onClick={handleAddClick}>
           <img src={IconoAgregar} alt="Agregar" />
         </AddButton>
+        <Card nombre={"Tomar medicina"} hora={"14:00"} dias={["Ma", "Ju"]} icono={"💊"}/>
+        {recordatorios.map((recordatorio, index) => (
+          <Card 
+            key={index}
+            nombre={recordatorio.nombre}
+            hora={recordatorio.hora}
+            dias={recordatorio.dias}
+            icono={recordatorio.icono}
+          />
+        ))}
       </div>
     </>
   );
 };
 
-export default HomePage
+export default HomePage;

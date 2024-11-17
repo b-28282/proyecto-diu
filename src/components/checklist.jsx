@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../stylesheets/checklist/checklist.scss'
+import '../stylesheets/checklist/checklist.scss';
 
-function Checklist() {
+function Checklist({ onDaysChange }) {
   const [items, setItems] = useState([
     { id: 1, text: 'Lu', completed: false },
     { id: 2, text: 'Ma', completed: false },
@@ -17,6 +17,7 @@ function Checklist() {
       item.id === id ? { ...item, completed: !item.completed } : item
     );
     setItems(updatedItems);
+    onDaysChange(updatedItems);
   };
 
   return (

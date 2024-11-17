@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import FormRecurrente from '../components/form_recurrente';
 import FormUnico from '../components/form_unico';
-import { useNavigate } from 'react-router-dom';
 
 const AgendarRecForm = () => {
-  const [formType, setFormType] = useState('recurrente');
+  const location = useLocation();
   const navigate = useNavigate();
+  const [formType, setFormType] = useState('recurrente');
+
+  useEffect(() => {
+    if (location.state && location.state.formType) {
+      setFormType(location.state.formType);
+    }
+  }, [location.state]);
 
   const handleFormTypeChange = (e) => {
     setFormType(e.target.value);
@@ -16,7 +23,7 @@ const AgendarRecForm = () => {
   };
 
   const handleNavigate1 = () => {
-    navigate(formType === 'recurrente' ? '/recordatorios' : '/citas');
+    navigate(formType === 'recurrente' ? '/' : '/citas');
   };
 
   return (
