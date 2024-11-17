@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 // Estilos para la tarjeta
@@ -41,11 +41,17 @@ const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
 `;
 
 const Card = () => {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(() => {
+    // Recupera el estado inicial desde sessionStorage
+    const storedState = sessionStorage.getItem('checkboxState');
+    return storedState ? JSON.parse(storedState) : false;
+  });
 
-  // Cambia el estado del checkbox
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
+    const newState = !isChecked;
+    setIsChecked(newState);
+    // Guarda el nuevo estado en sessionStorage
+    sessionStorage.setItem('checkboxState', JSON.stringify(newState));
   };
 
   return (
