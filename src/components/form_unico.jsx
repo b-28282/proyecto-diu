@@ -66,9 +66,10 @@ const SubmitButton = styled.button`
 
 const FormUnico = ({ onSubmit }) => {
   const [formData, setFormData] = useState({
-    date: '',
-    time: '',
-    reason: ''
+    nombre: '',
+    fecha: '',
+    hora: '',
+    descripcion: ''
   });
 
   // Maneja los cambios en los inputs
@@ -84,6 +85,16 @@ const FormUnico = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Datos del formulario:", formData);
+
+    // Obtener citas existentes de localStorage
+    const existingCitas = JSON.parse(localStorage.getItem('citas')) || [];
+
+    // Agregar nueva cita
+    const newCitas = [...existingCitas, formData];
+
+    // Guardar en localStorage
+    localStorage.setItem('citas', JSON.stringify(newCitas));
+
     if (onSubmit) {
       onSubmit(); // Llama a la función pasada por props (handleNavigate1 en este caso)
     }
@@ -92,20 +103,31 @@ const FormUnico = ({ onSubmit }) => {
   return (
     <FormContainer>
       <form onSubmit={handleSubmit}>
+        {/* Campo de texto para el nombre */}
+        <Label>Nombre</Label>
+        <Input 
+          type="text" 
+          name="nombre" 
+          value={formData.nombre} 
+          onChange={handleChange} 
+          placeholder="Escribe el nombre aquí..." 
+          required 
+        />
+
         {/* Línea de Fecha y Hora */}
         <Label>Ingrese Fecha y Hora</Label>
         <DateTimeRow>
           <Input 
             type="date" 
-            name="date" 
-            value={formData.date} 
+            name="fecha" 
+            value={formData.fecha} 
             onChange={handleChange} 
             required 
           />
           <Input 
             type="time" 
-            name="time" 
-            value={formData.time} 
+            name="hora" 
+            value={formData.hora} 
             onChange={handleChange} 
             required 
           />
@@ -114,8 +136,8 @@ const FormUnico = ({ onSubmit }) => {
         {/* Campo de texto para la razón del recordatorio */}
         <Label>Razón del Recordatorio</Label>
         <TextArea 
-          name="reason" 
-          value={formData.reason} 
+          name="descripcion" 
+          value={formData.descripcion} 
           onChange={handleChange} 
           placeholder="Escribe la razón del recordatorio aquí..." 
           required 
